@@ -2,181 +2,146 @@
   <br>
   <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://f.hubspotusercontent20.net/hubfs/2829524/Copia%20de%20LOGOTIPO_original-2.png"></a>
   <br>
-  Nombre del Proyecto
+  Suite de Pruebas Automatizadas con Playwright
   <br>
 </h1>
 
-<h4 align="center">Proyecto base de <a href="https://github.com/karatelabs/karate" target="_blank">Pragma</a>.</h4>
-
-De aca en adelante encontraras las partes del readme con un pequeño ejemplo dentro de cada una de ellas, actualiza su contenido (no olvides borrar esta línea)
+<h4 align="center">Proyecto base para la validación de APIs backend, desarrollado con <a href="https://playwright.dev/" target="_blank">Playwright</a> y TypeScript.</h4>
 
 <p align="center">
   <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">
-    <img src="https://img.shields.io/badge/Java-11+-orange.svg" alt="Java">
+    <img src="https://img.shields.io/badge/TypeScript-4+-blue.svg" alt="TypeScript">
   </a>
-  <a href="https://www.mysql.com/">
-    <img src="https://img.shields.io/badge/Database-MySQL-blue.svg" alt="MySQL">
+  <a href="https://playwright.dev/">
+    <img src="https://img.shields.io/badge/Playwright-API_Testing-brightgreen.svg" alt="Playwright">
   </a>
-  <a href="https://www.postgresql.org/">
-    <img src="https://img.shields.io/badge/Database-PostgreSQL-blue.svg" alt="PostgreSQL">
-  </a>
-  <a href="https://www.w3schools.com/sql/">
-    <img src="https://img.shields.io/badge/SQL-Fundamentals-lightgrey.svg" alt="SQL">
-  </a>
-  <a href="https://cucumber.io/">
-    <img src="https://img.shields.io/badge/Cucumber-BDD-green.svg" alt="Cucumber">
-  </a>
-  <a href="https://serenity-bdd.info/">
-    <img src="https://img.shields.io/badge/Serenity-Reporting-blueviolet.svg" alt="Serenity">
-  </a>
-  <a href="https://www.selenium.dev/">
-    <img src="https://img.shields.io/badge/Selenium-Web_Testing-brightgreen.svg" alt="Selenium">
+  <a href="https://nodejs.org/">
+    <img src="https://img.shields.io/badge/Node.js-16+-green.svg" alt="Node.js">
   </a>
 </p>
 
-Redacta aca una breve descripcion del proyecto...
+## Descripción
+
+Este proyecto es una suite de pruebas automatizadas diseñada para validar el comportamiento de diversas APIs backend. Está desarrollado con **Playwright** y organizado bajo una arquitectura modular que permite una fácil escalabilidad y mantenimiento. 
+
+El uso de **TypeScript** asegura un **tipado estricto**, reduciendo errores durante el desarrollo y facilitando la integración entre los módulos del proyecto. Además, incorpora componentes reutilizables, como helpers y contratos, para mantener la consistencia y minimizar la duplicación de código.
 
 <p align="center">
-  <a href="#topicos">Topicos</a> •
-  <a href="#tecnologias">Tecnologias</a> •
+  <a href="#topicos">Tópicos</a> •
+  <a href="#tecnologias">Tecnologías</a> •
+  <a href="#estructura-del-proyecto">Estructura del Proyecto</a> •
+  <a href="#instalacion-y-ejecucion">Instalación y Ejecución</a> •
   <a href="#consideraciones">Consideraciones</a> •
-  <a href="#descarga">Descarga</a> •
-  <a href="#instalación-y-ejecución">Instalación y ejecución</a> •
   <a href="#autores">Autores</a> •
-  <a href="#relacionados">Relacionados</a> •
   <a href="#roadmap">Roadmap</a>
 </p>
 
-El siguiente GIF es de ejemplo, si tienes uno propio reemplazalo, de lo contrario eliminalo.
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
+## Tópicos
 
-## Topicos
+- TypeScript
+- Playwright
+- Arquitectura modular
+- Pruebas automatizadas
+- APIs backend
 
-* Java
-* Bases de datos
-* SQL
-* Cucumber
-* Serenity
-* Selenium
+## Tecnologías
 
-## Tecnologias
-### This project required:
-- [JDK java] version 16
-- [Serenity] version 4
-- [Gradle] last version
+### Este proyecto requiere:
 
-Nota: 
-*   Se requiere Selenium posterior a la version 4.11 para la descarga automatica de algunos drivers de los navegadores
-    La version de Serenity implementada (4.0.0) ya incluye Selenium 4.12 lo cual soporta los navegadores a Octubre del 2023
-    si el proyecto presenta problemas relacionados a las version del driver descargado de forma automatica y la version de su 
-    navegador vale la pena revisar que este trabajando con versiones recientes de Serenity y checkear las versiones de Selenium
-    incluidas en dicha version de Serenity
-*   Con Selenium Manager incluido en Serenity 4.0.0 ya no se requiere WebDriverManager de Boni Garcia, razon por la cual ya
-    serenity no lo incluye dentro de sus dependencias
+- **Node.js** versión 16 o superior.
+- **TypeScript** versión 4 o superior.
+- **Playwright** última versión.
+
+## Estructura del Proyecto
+
+A continuación, se detalla la estructura del proyecto con una breve descripción de cada carpeta:
+
+```plaintext
+├── .env                             # Variables de entorno para configurar el entorno de ejecución
+├── .gitignore                       # Lista de archivos y carpetas a ignorar en Git
+├── .npmrc                           # Configuración específica para npm
+├── package.json                     # Definición del proyecto y dependencias
+├── package-lock.json                # Información detallada sobre las dependencias
+├── playwright.config.ts             # Configuración principal de Playwright
+├── src/                             # Carpeta principal con código fuente
+│   ├── common/                      # Componentes comunes reutilizables
+│       ├── aplication/              # Lógica de aplicación y casos de uso generales
+│           └── uses_cases/          # Implementación de los casos de uso del sistema
+│       ├── domain/                  # Lógica de negocio y modelos del dominio
+│           ├── entities/            # Entidades centrales del negocio
+│           └── helpers/             # Funciones auxiliares o utilidades compartidas
+│       └── ports/                   # Interfaces para la comunicación externa (puertos)
+│           └── interfaces/          # Definición de interfaces en TypeScript
+|               ├── uses_cases/      # Definición de interfaces en TypeScript
+|               ├── entities/        # Definición de interfaces en TypeScript
+│               └── helpers/         # Definición de interfaces en TypeScript
+│   ├── services/                    # Lógica de negocio específica de cada servicio
+│       ├── service1/                # Implementación del servicio 1
+│           ├── aplication/          # Lógica de aplicación específica del servicio 1
+│               └── uses_cases/      # Casos de uso del servicio 1
+│           ├── domain/              # Lógica de negocio del servicio 1
+│               ├── entities/        # Entidades del dominio del servicio 1
+│               └── helpers/         # Utilidades específicas del servicio 1
+│           └── ports/               # Puertos e interfaces del servicio 1
+│               └── interfaces/      # Definición de interfaces para el servicio 1
+|                   ├── uses_cases/  # Definición de interfaces para el servicio 1
+|                   ├── entities/    # Definición de interfaces para el servicio 1
+│                   └── helpers/     # Definición de interfaces para el servicio 1
+│       ├── service2/                # Implementación del servicio 2
+│           ├── aplication/          # Lógica de aplicación específica del servicio 2
+│               └── uses_cases/      # Casos de uso del servicio 2
+│           ├── domain/              # Lógica de negocio del servicio 2
+│               ├── entities/        # Entidades del dominio del servicio 2
+│               └── helpers/         # Utilidades específicas del servicio 2
+│           └── ports/               # Puertos e interfaces del servicio 2
+│               └── interfaces/      # Definición de interfaces para el servicio 2
+|                   ├── uses_cases/  # Definición de interfaces para el servicio 2
+|                   ├── entities/    # Definición de interfaces para el servicio 2
+│                   └── helpers/     # Definición de interfaces para el servicio 2
+├── tests/                           # Carpeta de pruebas automatizadas con Playwright
+│   ├── data/                        # Carpeta con datos de prueba
+│   ├── service1/                    # Pruebas del servicio 1
+│   ├── service2/                    # Pruebas del servicio 2
+```
+## Instalación y Ejecución
+
+### Instalación
+
+1. **Clona el repositorio**:
+   ```bash
+   git clone https://github.com/usuario/nombre-proyecto
+   cd nombre-proyecto
+1. **Instala las dependencias**:
+   ```bash
+   npm install
+### Ejecución de Pruebas
+- **Ejecutar todas las pruebas con Playwright**:
+   ```bash
+   npx playwright test
+- **Ejecutar pruebas específicas**:
+   ```bash
+   npx playwright test tests/service1 --headed
 
 ## Consideraciones
-- Para hacer uso de la la utilidad de Base de Datos es importante 
-        que se instacie una Base de datos y se configura en el archivo de configuración ubicado en:
-
-            ./src/main/resources/configs/congig.properties
-
-        En las dependencias del proyecto esta agregada la dependencia del driver de MySQL, si no 
-        desea realizar mayores ajustes respecto al motor de BD use MySQL. Si desea usar otro motor, 
-        adiciones la dependencia del driver al build.gradle y configure este driver como observa 
-        se realizo para MySQL en: 
-    
-            ./src/main/java/utils/ConectionBD.java
-        
-        Nota: Algunos motores de BD no requieren agregar la dependencia del driver como Oracle o MSserver
-
-## Descarga
-Para clonar está aplicación desde la linea de comando:
-
-```bash
-git clone https://github.com/somospragma/qa-transversal-proyecto-base-manejo-base-de-datos-java
-cd qa-transversal-proyecto-base-manejo-base-de-datos-java
-git remote remove origin
-git remote add origin URL_DE_TU_NUEVO_REPOSITORIO
-git push -u origin master
-```
-Nota: Asegúrate de reemplazar URL_DE_TU_NUEVO_REPOSITORIO con la URL del repositorio que creaste en tu cuenta de GitHub.
-
-Puedes descargar el proyecto en el enlace [download](https://github.com/somospragma/qa-transversal-proyecto-base-manejo-base-de-datos-java) 
-
-## Instalación y ejecución
-
-Para ejecutar está aplicación, necesitas [Gradle](https://gradle.org/install) and [Java JDK](https://www.oracle.com/java/technologies/downloads/) instalados en tu equipo, ten en cuenta que tu IDE puede gestionar la instalación de estos dos requerimientos. Desde la linea de comando:
-
-```
-gradle clean build
-```
-
-##  🛠️ Run tests Chrome gradle:
-```
-gradle clean test -Dcontext=chrome -Dwebdriver.driver=chrome
-gradle clean test --info --stacktrace --tests "ruta.nameRunner" -Dcontext=chrome -Dwebdriver.driver=chrome
-gradle clean test -Dcucumber.options="--tags @someTag" -Dcontext=chrome -Dwebdriver.driver=chrome
-gradle clean test -Dcucumber.options="--tags '@someTag or @someTag'" -Dcontext=chrome -Dwebdriver.driver=chrome
-```
-
-Nota:
-
-*   Si ejecuta en la consola de gradle no debe usar comillas simples '...' para encerrar '-Dwebdriver.driver=chrome'
-*   Si ejecuta en la consola estándar de la máquina quizás si deba utilizar '...' en las porciones del comando que incluyan puntos
-*   Con "./gradlew test ..." ejecuta el gradle compilado del proyecto
-*   Con "gradle test ..." ejecuta el gradle de su maquina, el configurado en las variables de entorno de su sistema operativo
-
-
-### ejemplo
-```
-./gradlew clean test --info --stacktrace --tests "co.com.pragma.runners.CompareImageRunner" -Dcontext=chrome '-Dwebdriver.driver=chrome'
-./gradlew clean test --info --stacktrace --tests "co.com.pragma.runners.LoginRunner" -Dcontext=chrome '-Dwebdriver.driver=chrome'
-```
-
-
-##  🛠️ Run tests Firefox gradle:
-```
-./gradlew clean test -Dcontext=firefox '-Dwebdriver.driver=firefox'
-./gradlew test --tests "runners.RunnerTags" '-Dcontext=firefox -Dwebdriver.driver=firefox'
-```
-### ejemplo
-```
-./gradlew clean test --info --stacktrace --tests "runners.RunnerTags" '-Dcontext=firefox -Dwebdriver.driver=firefox'
-```
-
-## **Run tests in different environments:**
-```
-gradle command... -Denvironment=defaul
-gradle command... -Denvironment=dev
-gradle command... -Denvironment=qa
-gradle command... -Denvironment=prod
-```
-### Note: 
-    - The default environment will be used if no other value is provided
-    - Could modify the environment urls in .../test/resources/serenity.conf
-
-
-## **Run tests in different browser:**
-```
-gradle command... -Dwebdriver.driver=chrome
-gradle command... -Dwebdriver.driver=firefox
-gradle command... -Dwebdriver.driver=edge
-```
-
+- **Tipado estricto con TypeScript**:
+  Todas las entidades, casos de uso e interfaces están tipadas para asegurar consistencia en todo el proyecto.
+- **Reutilización de código**:
+  Los componentes en common/ están diseñados para ser reutilizados en múltiples servicios, reduciendo la duplicación de código.
+- **Escalabilidad**:
+  La arquitectura modular permite agregar nuevos servicios y funcionalidades sin afectar la estructura existente.
 
 ## Autores
 
-
-| [<img src="https://gitlab.com/uploads/-/system/user/avatar/13437423/avatar.png?width=400" width=115><br><sub>Mauro L. Ibarra P.</sub>](https://gitlab.com/mauro.ibarrap) <br/> | [<img src="https://secure.gravatar.com/avatar/23b2db02403d79ebd356e8e8356758ec?s=192&d=identicon" width=115><br><sub>Otro autor</sub>](https://gitlab.com/) | 
-:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-
-
-## Relacionados
-
-- [proyecto-base-serenity-bdd-screenplay-browsers-and-utilities](https://github.com/somospragma/qa-web-proyecto-base-serenity-bdd-screenplay-browsers-and-utilities)
-
+| [<img src="https://secure.gravatar.com/avatar/23b2db02403d79ebd356e8e8356758ec?s=128" width=115><br><sub>Cristhian David Montaño</sub>](https://github.com/davidMontanoPragma) |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 
 ## Roadmap
 
-- [Guia QA](https://github.com/orgs/somospragma/repositories?q=qa) - (En construcción) Una guia de proyectos Orientados a la Calidad de Software
+1. **Agregar más servicios**:  
+   Continuar expandiendo la suite de pruebas para nuevos módulos.
 
+2. **Integración continua**:  
+   Configurar CI/CD para automatizar la ejecución de pruebas.
+
+3. **Mejorar la documentación**:  
+   Crear guías detalladas para nuevos desarrolladores.
