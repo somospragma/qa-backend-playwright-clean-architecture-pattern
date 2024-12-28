@@ -7,7 +7,10 @@ export default defineConfig({
   use: {
     baseURL: process.env.URL,
     ignoreHTTPSErrors: true,
-    trace: "retain-on-failure"
+    trace: "retain-on-failure",
+    extraHTTPHeaders: {
+      'Content-Type': 'application/json',
+    },
   },
   testDir: './tests',
   retries: 0,

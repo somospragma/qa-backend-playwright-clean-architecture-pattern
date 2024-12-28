@@ -1,7 +1,8 @@
 import * as fs from 'fs';
 import * as XLSX from 'xlsx';
-import * as csv from 'csv-parser';
-import { IDataReaderHelper } from '../../ports';
+import csv from 'csv-parser';
+
+import { IDataReaderHelper } from '@common/ports';
 
 export class DataReaderHelper implements IDataReaderHelper {
 
@@ -16,9 +17,9 @@ export class DataReaderHelper implements IDataReaderHelper {
             const rows: object[] = [];
             fs.createReadStream(filePath)
                 .pipe(csv())
-                .on('data', (row) => rows.push(row))
+                .on('data', (row: object) => rows.push(row))
                 .on('end', () => resolve(rows))
-                .on('error', (error) => reject(error));
+                .on('error', (error: any) => reject(error));
         });
     }
 }

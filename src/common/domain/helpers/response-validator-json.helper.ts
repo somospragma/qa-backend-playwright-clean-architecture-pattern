@@ -1,5 +1,5 @@
-import Ajv, { JSONSchemaType, ValidateFunction, ErrorObject } from "ajv";
-import { IJSONSchema, IResponseValidatorHelper } from "../../ports";
+import Ajv, { ValidateFunction, ErrorObject } from "ajv";
+import { IJSONSchema, IResponseValidatorHelper } from "@common/ports";
 
 export class ResponseValidatorHelper implements IResponseValidatorHelper {
     private ajv: Ajv;

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import ExcelJS from 'exceljs';
-import { IExcelHelper } from '../../ports';
+import { IExcelHelper } from '@common/ports';
 
 export class ExcelHelper implements IExcelHelper {
 
@@ -18,12 +18,28 @@ export class ExcelHelper implements IExcelHelper {
         }
 
         const rows: object[] = [];
+        let headers: string[] = [];
+
         sheet.eachRow((row, rowIndex) => {
-            const rowData: any = {};
-            row.eachCell((cell, colIndex) => {
-                rowData[`Column${colIndex}`] = cell.value;
-            });
-            rows.push(rowData);
+            const values = row.values;
+
+            // Verificar si values es un array (ignorar otros formatos)
+            if (Array.isArray(values)) {
+                if (rowIndex === 1) {
+                    // Usar la primera fila como encabezados
+                    headers = values.slice(1).map((header) => header?.toString() || '');
+                } else {
+                    // Crear un objeto con los valores de las filas restantes
+                    const rowData: any = {};
+                    values.slice(1).forEach((cell, colIndex) => {
+                        const key = headers[colIndex]; // Mapear con los encabezados
+                        if (key) {
+                            rowData[key] = cell;
+                        }
+                    });
+                    rows.push(rowData);
+                }
+            }
         });
 
         return rows;
