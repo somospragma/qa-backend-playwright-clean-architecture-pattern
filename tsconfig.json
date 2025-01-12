@@ -6,7 +6,6 @@
       "paths": {
         "@auth/*": ["src/services/auth/*"],    // Alias para auth
         "@common/*": ["src/common/*"],         // Alias para common
-        "@ports/*": ["src/ports/*"],           // Alias para ports
         "@tests/*": ["tests/*"]                // Alias para pruebas
       },
       "strict": true,                     // Activa estricta comprobación de tipos

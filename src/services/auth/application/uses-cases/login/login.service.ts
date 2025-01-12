@@ -44,9 +44,7 @@ export class LoginService implements ILoginService {
                 } else
                     this.loggerHelper.logResponse(500, { error: "Error no manejado" }, false);
             }
-        } else {
-            console.log("No se encontró la URL correspondiente");
-        }
+        } else console.log("No se encontró la URL correspondiente");
     }
 
     reportEnd<T>(status: number, dataresponse: T, isResult: boolean): void {
