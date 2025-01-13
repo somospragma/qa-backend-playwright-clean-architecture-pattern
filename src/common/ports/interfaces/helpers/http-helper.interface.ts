@@ -14,10 +14,10 @@ export interface IHttpHelper {
      * Method by which the get request is made
      * @param baseUrl string
      * @param path string
-     * @param data T
+     * @param token { [key: string]: string; } | undefined
      * @returns Promise APIResponse
      */
-    httpGet<T>(baseUrl: string, path: string, data: T): Promise<APIResponse>;
+    httpGet(baseUrl: string, path: string, headers?: { [key: string]: string; } | undefined): Promise<APIResponse>;
 
     /**
      * Method by which the patch request is made

@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import ExcelJS from 'exceljs';
-import { IExcelHelper } from '@common/ports';
+import { IExcelService } from '@common/ports';
 
-export class ExcelHelper implements IExcelHelper {
+export class ExcelService implements IExcelService {
 
     async readExcel(filePath: string, sheetName?: string): Promise<object[]> {
         if (!fs.existsSync(filePath)) {

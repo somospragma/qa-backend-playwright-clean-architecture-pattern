@@ -14,23 +14,23 @@ export class HttpHelper implements IHttpHelper {
             data: data
         });
     };
-    
-    async httpGet<T>(baseUrl: string, path: string, data: T) {
-        return await this.request.get(`${baseUrl}${path}`);
+
+    async httpGet(baseUrl: string, path: string, headers?: { [key: string]: string; } | undefined) {
+        return await this.request.get(`${baseUrl}${path}`, { headers });
     };
-    
+
     async httpPatch<T>(baseUrl: string, path: string, data: T) {
         return await this.request.patch(`${baseUrl}${path}`, {
             data: data
         });
     };
-    
+
     async httpDelete<T>(baseUrl: string, path: string, data: T) {
         return await this.request.delete(`${baseUrl}${path}`, {
             data: data
         });
     };
-    
+
     async httpPut<T>(baseUrl: string, path: string, data: T) {
         return await this.request.put(`${baseUrl}${path}`, {
             data: data

@@ -1,12 +1,12 @@
 import { test, expect, APIRequestContext, request as playwrightRequest } from "@playwright/test";
 import { LoginService } from "@auth/application";
-import { ExcelHelper } from "@common/domain/helpers";
-import { IExcelHelper } from "@common/ports";
+import { ExcelService } from "@common/application";
+import { IExcelService } from "@common/ports";
 
 test.describe("Login API Test Suite", () => {
     let apiContext: APIRequestContext;
     let loginService: LoginService;
-    let excelHelper: IExcelHelper = new ExcelHelper();
+    let excelService: IExcelService = new ExcelService();
     let testData: Record<string, any>[];
 
     test.beforeAll(async () => {
@@ -22,10 +22,12 @@ test.describe("Login API Test Suite", () => {
         loginService = new LoginService(apiContext);
 
         // Leer datos del archivo Excel
-        testData = await excelHelper.readExcel("tests/data/testData.xlsx", 'login');
+        testData = await excelService.readExcel("tests/data/testData.xlsx", 'login');
     });
 
     test("Validar el login con datos del Excel", async () => {
+        const dataToken: { token: string; }[] = [];
+
         for (const dataLogin of testData) {
             // Consumir el servicio con los datos del Excel
             await loginService.consumeService({
@@ -39,12 +41,9 @@ test.describe("Login API Test Suite", () => {
             // Validar el token extraído
             expect(loginService.token).not.toBeNull();
 
-            const dataToken  = [
-                { token: loginService.token! }
-            ];
-
-            await excelHelper.writeExcel('tests/data/testDataToken.xlsx', 'token', dataToken)
+            dataToken.push({ token: loginService.token! })
         }
+        await excelService.writeExcel('tests/data/testDataToken.xlsx', 'token', dataToken)
     });
 
     test.afterAll(async () => {

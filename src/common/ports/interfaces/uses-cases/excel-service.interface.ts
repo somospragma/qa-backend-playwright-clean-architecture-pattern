@@ -1,4 +1,4 @@
-export interface IExcelHelper {
+export interface IExcelService {
     /**
      * Lee datos de una hoja de un archivo Excel.
      * @param filePath string - Ruta del archivo Excel.

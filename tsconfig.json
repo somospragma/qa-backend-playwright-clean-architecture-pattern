@@ -5,6 +5,7 @@
       "baseUrl": "./",                    // Define la base para resolver rutas relativas
       "paths": {
         "@auth/*": ["src/services/auth/*"],    // Alias para auth
+        "@booking/*": ["src/services/booking/*"],    // Alias para booking
         "@common/*": ["src/common/*"],         // Alias para common
         "@tests/*": ["tests/*"]                // Alias para pruebas
       },
