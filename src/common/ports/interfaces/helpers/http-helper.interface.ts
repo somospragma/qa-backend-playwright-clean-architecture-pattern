@@ -8,7 +8,7 @@ export interface IHttpHelper {
      * @param data T
      * @returns Promise APIResponse
      */
-    httpPost<T>(baseUrl: string, path: string, data: T): Promise<APIResponse>;
+    httpPost<T>(baseUrl: string, path: string, data: T, headers?: { [key: string]: string; } | undefined): Promise<APIResponse>;
 
     /**
      * Method by which the get request is made
@@ -42,7 +42,8 @@ export interface IHttpHelper {
      * @param baseUrl string
      * @param path string
      * @param data T
+     * @param headers { [key: string]: string; } | undefined
      * @returns Promise APIResponse
      */
-    httpPut<T>(baseUrl: string, path: string, data: T): Promise<APIResponse>;
+    httpPut<T>(baseUrl: string, path: string, data: T, headers?: { [key: string]: string; } | undefined): Promise<APIResponse>;
 }

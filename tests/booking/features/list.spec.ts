@@ -1,17 +1,20 @@
 import { test, expect, APIRequestContext, request as playwrightRequest } from "@playwright/test";
-import { ExcelService } from "@common/application";
-import { IExcelService } from "@common/ports";
 import { BookingListService } from "@booking/application";
+import { ExcelService } from "@common/application";
+
+import * as fs from 'fs';
+import path from 'path';
 import { IBookingListService } from "@booking/ports";
+
+const dataPath = path.resolve(__dirname, '../../json/testDataToken.json');
+const testData: Record<string, any>[] = JSON.parse(fs.readFileSync(dataPath, 'utf-8')); 
 
 test.describe("List API Test Suite", () => {
     let apiContext: APIRequestContext;
     let bookingListService: IBookingListService;
-    let excelService: IExcelService = new ExcelService();
-    let testData: Record<string, any>[];
+    let dataToken: Record<string, any>[] = [];
 
     test.beforeAll(async () => {
-        // Crear un contexto de solicitud API
         apiContext = await playwrightRequest.newContext({
             baseURL: process.env.URL,
             extraHTTPHeaders: {
@@ -19,33 +22,41 @@ test.describe("List API Test Suite", () => {
             },
         });
 
-        // Inicializar LoginService con el contexto de solicitud
         bookingListService = new BookingListService(apiContext);
-
-        // Leer datos del archivo Excel
-        testData = await excelService.readExcel("tests/data/testDataToken.xlsx", 'token');
     });
 
-    test("Validar la lista con los Tokens del Excel", async () => {
-        for (const dataToken of testData) {
-            // Consumir el servicio con los datos del Excel
-            await bookingListService.consumeService(dataToken.token, '1');
-            
-            const dataresponse = (bookingListService.listBooking) ? bookingListService.listBooking.bookings : [];
-            
-            const isValidatoJson = bookingListService.validatorJsonSchema(await bookingListService.responsePlaywright.json())
+    testData.forEach((data, index) => {
+        test(`Validar la lista con el Token del Excel - Caso ${index + 1}`, async () => {
+            await test.step("Consumir el servicio con token", async () => {
+                await bookingListService.consumeService(data.token, "");
+            });
 
-            // Reportar el final de la prueba
-            bookingListService.reportEnd(bookingListService.responsePlaywright.status(), bookingListService.listBooking, dataresponse.length > 0 ? true : false);
-            
-            // Validar automatización
-            expect(isValidatoJson).toBe(true);
-            expect(bookingListService.responsePlaywright.status()).toBe(200);
-        }
+            const responseData = await bookingListService.responsePlaywright.json();
+            const isValidatoJson = bookingListService.validatorJsonSchema(responseData);
+
+            await test.step("Reportar el resultado de la prueba", async () => {
+                bookingListService.reportEnd(
+                    bookingListService.responsePlaywright.status(),
+                    bookingListService.listBooking,
+                    bookingListService.listBooking?.bookings.length > 0 ? true : false
+                );
+            });
+
+            await test.step("Validar la respuesta del servicio", async () => {
+                const dataresponse = bookingListService.listBooking ? bookingListService.listBooking.bookings : [];
+                dataToken = dataresponse;
+
+                expect(isValidatoJson).toBe(true);
+                expect(bookingListService.responsePlaywright.status()).toBe(200);
+                expect(dataresponse.length).toBeGreaterThan(0);
+            });
+        });
     });
 
     test.afterAll(async () => {
-        // Cerrar el contexto de solicitud
+        const excelService = new ExcelService();
+        if (bookingListService.responsePlaywright.status() === 200) await excelService.writeExcel("tests/data/testDataBooking.xlsx", "list-booking", dataToken);
+
         await apiContext.dispose();
     });
 });

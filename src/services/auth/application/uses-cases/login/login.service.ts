@@ -24,7 +24,7 @@ export class LoginService implements ILoginService {
     constructor(request: APIRequestContext) {
         this.httpHelper = new HttpHelper(request)
     }
-
+    
     async consumeService(data: ILogin): Promise<void> {
         const url = process.env.URL;
         const path = (process.env.Auth) ? `${process.env.Auth}login` : '';
@@ -33,7 +33,7 @@ export class LoginService implements ILoginService {
         if (url) {
             try {
                 this.response = await this.httpHelper.httpPost(url, path, data);
-                this.tokenResponse = this.tokenExtractorHelper.extractToken(this.response)
+                this.tokenResponse = this.tokenExtractorHelper.extractToken(this.response);
             } catch (error) {
                 if (this.errorHelper.isHttpError(error)) {
                     this.loggerHelper.logResponse(

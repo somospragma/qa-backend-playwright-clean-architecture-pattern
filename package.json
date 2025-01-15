@@ -4,7 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test",
+    "preload:testDataLogin": "npx ts-node scripts/preload-data-login.ts",
+    "preload:testDataToken": "npx ts-node scripts/preload-data-token.ts",
+    "preload:testDataBooking": "npx ts-node scripts/preload-data-booking.ts",
+    "preload:testDataBookingList": "npx ts-node scripts/preload-data-booking-list.ts",
+    "test": "npm run preload:testData && npx playwright test",
+    "test:auth:login": "npm run preload:testDataLogin && npx playwright test tests/auth/features/login --headed",
+    "test:booking:list": "npm run preload:testDataToken && npx playwright test tests/booking/features/list --headed",
+    "test:booking:create": "npm run preload:testDataBooking && npx playwright test tests/booking/features/create --headed",
+    "test:booking:read": "npm run preload:testDataBookingList && npx playwright test tests/booking/features/read --headed",
     "report": "npx playwright show-report"
   },
   "keywords": [],
@@ -13,6 +21,8 @@
   "devDependencies": {
     "@playwright/test": "^1.49.0",
     "@types/node": "^22.9.0",
+    "cross-env": "^7.0.3",
+    "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0"
   },
   "dependencies": {

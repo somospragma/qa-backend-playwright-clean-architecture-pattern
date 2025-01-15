@@ -1,21 +1,21 @@
 {
-    "compilerOptions": {
-      "target": "ESNext",                  // Define el nivel de ES que se transpila
-      "module": "CommonJS",               // Usa CommonJS para Node.js
-      "baseUrl": "./",                    // Define la base para resolver rutas relativas
-      "paths": {
-        "@auth/*": ["src/services/auth/*"],    // Alias para auth
-        "@booking/*": ["src/services/booking/*"],    // Alias para booking
-        "@common/*": ["src/common/*"],         // Alias para common
-        "@tests/*": ["tests/*"]                // Alias para pruebas
-      },
-      "strict": true,                     // Activa estricta comprobación de tipos
-      "esModuleInterop": true,            // Mejora la compatibilidad con módulos ES6
-      "skipLibCheck": true,               // Omite verificación de tipos en archivos de librerías
-      "outDir": "./dist",                 // Carpeta donde se generará el código transpilado
-      "resolveJsonModule": true           // Permite importar archivos JSON
+  "compilerOptions": {
+    "target": "ESNext",                  // Define el nivel de ES que se transpila
+    "module": "CommonJS",               // Usa CommonJS para Node.js
+    "baseUrl": "./",                    // Define la base para resolver rutas relativas
+    "paths": {
+      "@auth/*": ["src/services/auth/*"],    // Alias para auth
+      "@booking/*": ["src/services/booking/*"],    // Alias para booking
+      "@common/*": ["src/common/*"],         // Alias para common
+      "@tests/*": ["tests/*"]                // Alias para pruebas
     },
-    "include": ["src/**/*", "tests/**/*"], // Incluir archivos para TypeScript
-    "exclude": ["node_modules"]           // Excluir node_modules
+    "strict": true,                     // Activa estricta comprobación de tipos
+    "esModuleInterop": true,            // Mejora la compatibilidad con módulos ES6
+    "skipLibCheck": true,               // Omite verificación de tipos en archivos de librerías
+    "outDir": "./dist",                 // Carpeta donde se generará el código transpilado
+    "resolveJsonModule": true           // Permite importar archivos JSON
+  },
+  "include": ["src/**/*", "tests/**/*", "scripts/preload-data-login.ts"], // Incluir archivos para TypeScript
+  "exclude": ["node_modules"]           // Excluir node_modules
 }
   

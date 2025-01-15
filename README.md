@@ -118,10 +118,16 @@ A continuación, se detalla la estructura del proyecto con una breve descripció
 - **Ejecutar todas las pruebas con Playwright**:
    ```bash
    npx playwright test
+   npm run test
 - **Ejecutar pruebas específicas**:
    ```bash
    npx playwright test tests/service1 --headed
-
+   npm run test:service1
+### Reportes
+- **Ejecutar el reporte de Playwright**:
+   ```bash
+   npx playwright show-report
+   npm run report
 ## Consideraciones
 - **Tipado estricto con TypeScript**:
   Todas las entidades, casos de uso e interfaces están tipadas para asegurar consistencia en todo el proyecto.

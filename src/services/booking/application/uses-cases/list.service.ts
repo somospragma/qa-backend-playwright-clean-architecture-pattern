@@ -24,14 +24,14 @@ export class BookingListService implements IBookingListService {
 
     constructor(request: APIRequestContext) {
         this.httpHelper = new HttpHelper(request);
-        this.validatoJson = new ResponseValidatorHelper(this.jsonSchemaHelper.jsonSchemaResponse200() as IJSONSchema);
+        this.validatoJson = new ResponseValidatorHelper(this.jsonSchemaHelper.jsonSchemaResponseList200() as IJSONSchema);
     }
 
     async consumeService(token: string, roomid: string): Promise<void> {
 
         const url = process.env.URL;
         const query = `?roomid=${roomid}`;
-        const path = (process.env.Auth) ? `${process.env.Booking}${(query) ? query : ''}` : '';
+        const path = (process.env.Booking) ? `${process.env.Booking}${(roomid) ? query : ''}` : '';
         const headers = {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

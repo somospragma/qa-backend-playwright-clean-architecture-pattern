@@ -1,4 +1,8 @@
 export interface IValidatorJsonSchemaHelper {
 
-    jsonSchemaResponse200(): Object;
+    jsonSchemaResponseList200(): Object;
+
+    jsonSchemaResponseRead200(): Object;
+
+    jsonSchemaResponseCreate200(): Object
 }

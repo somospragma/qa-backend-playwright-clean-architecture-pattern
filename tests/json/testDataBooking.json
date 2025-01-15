@@ -1,0 +1,24 @@
+[
+  {
+    "bookingid": "2",
+    "roomid": "10",
+    "firstname": "Cristhian",
+    "lastname": "Montaño",
+    "depositpaid": "true",
+    "email": "qapruebascristhian@gmail.com",
+    "phone": "573214754846",
+    "checkin": "2025-01-19",
+    "checkout": "2025-01-20"
+  },
+  {
+    "bookingid": "3",
+    "roomid": "11",
+    "firstname": "David",
+    "lastname": "Vargas",
+    "depositpaid": "true",
+    "email": "qapruebascristhian@gmail.com",
+    "phone": "573214754846",
+    "checkin": "2025-01-19",
+    "checkout": "2025-01-20"
+  }
+]
