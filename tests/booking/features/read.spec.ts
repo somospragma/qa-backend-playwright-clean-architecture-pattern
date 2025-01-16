@@ -28,13 +28,13 @@ test.describe("List API Test Suite", () => {
         bookingReadService = new BookingReadService(apiContext);
     });
 
-    testListBooking.forEach((booking, index) => { 
-        test(`Validar al read con el Token del Excel - Caso ${index + 1}`, async () => {
+    testListBooking.forEach((booking, index) => {
+        test(`Validar al read con el Token - Caso ${index + 1}`, async () => {
             let isValidatoJson: boolean = false;
             await test.step("Consumir el servicio con token", async () => {
                 await bookingReadService.consumeService(testDataToken[0].token, `${booking.bookingid}`);
             });
-            // Consumir el servicio con los datos del Excel
+            // Consumir el servicio con los datos
             const response = bookingReadService.responsePlaywright;
             const responseData = await response.json();
             const isBooking = bookingReadService.booking && Object.keys(bookingReadService.booking).length > 0 ? true : false;
@@ -47,9 +47,9 @@ test.describe("List API Test Suite", () => {
                     isBooking
                 );
             });
-            
+
             await test.step("Validar la respuesta del servicio", async () => {
-                const isValidBookingid = bookingReadService.booking === booking.bookingid;
+                const isValidBookingid = bookingReadService.booking.bookingid === booking.bookingid;
 
                 expect(response.status()).toBe(200);
                 expect(isValidatoJson).toBe(true);

@@ -1,17 +1,17 @@
 import { test, expect, APIRequestContext, request as playwrightRequest } from "@playwright/test";
 import { LoginService } from "@auth/application";
-import { ExcelService } from "@common/application";
-import { IExcelService } from "@common/ports";
+import { writeJson } from "@common/application";
 
 import * as fs from "fs";
 import path from "path";
 
 const dataPath = path.resolve(__dirname, "../../json/testDataLogin.json");
+const tokenPath = path.resolve(__dirname, '../../json/testDataToken.json');
 const testData: Record<string, any>[] = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+
 let dataToken: { token: string; status: string }[] = [];
 
 test.describe("Login API Test Suite", () => {
-    const excelService: IExcelService = new ExcelService();
     let loginService: LoginService;
     let apiContext: APIRequestContext;
 
@@ -66,11 +66,9 @@ test.describe("Login API Test Suite", () => {
 
     test.afterAll(async () => {
         if (dataToken.length > 0) {
-            await excelService.writeExcel("tests/data/testDataToken.xlsx", "token", dataToken);
+            writeJson(tokenPath, dataToken);
             console.log("✅ Tokens exitosos guardados en el archivo Excel.");
-        } else
-            console.log("❌ No hay tokens exitosos para guardar.");
-
+        } else console.log("❌ No hay tokens exitosos para guardar.");
 
         // Cerrar el contexto de solicitud
         await apiContext.dispose();

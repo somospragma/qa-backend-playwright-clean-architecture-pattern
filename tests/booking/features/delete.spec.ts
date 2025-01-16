@@ -29,11 +29,11 @@ test.describe("List API Test Suite", () => {
     });
 
     testListBooking.forEach((booking, index) => {
-        test(`Validar al delete con el Token del Excel - Caso ${index + 1}`, async () => {
+        test(`Validar al delete con el Token - Caso ${index + 1}`, async () => {
             await test.step("Consumir el servicio con token", async () => {
                 await bookingDeleteService.consumeService(testDataToken[0].token, `${booking.bookingid}`);
             });
-            // Consumir el servicio con los datos del Excel
+            // Consumir el servicio con los datos
             const response = bookingDeleteService.responsePlaywright;
 
             await test.step("Reportar el resultado de la prueba", async () => {

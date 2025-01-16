@@ -28,7 +28,7 @@ test.describe("List API Test Suite", () => {
     });
 
     testDataBooking.forEach((booking, index) => {
-        test(`Validar el update con el Token del Excel - Caso ${index + 1}`, async () => {
+        test(`Validar el update con el Token - Caso ${index + 1}`, async () => {
             let dataBooking: IBooking = {} as IBooking;
             let isValidBooking: boolean = false;
             let isValidatoJson: boolean = false;
