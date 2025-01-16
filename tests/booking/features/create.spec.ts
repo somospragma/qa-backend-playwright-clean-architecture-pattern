@@ -15,7 +15,6 @@ const testDataBooking: Record<string, any>[] = JSON.parse(fs.readFileSync(dataPa
 test.describe("List API Test Suite", () => {
     let apiContext: APIRequestContext;
     let bookingCreateService: IBookingCreateService;
-    let dataToken: Record<string, any>[] = [];
 
     test.beforeAll(async () => {
         apiContext = await playwrightRequest.newContext({
@@ -29,7 +28,7 @@ test.describe("List API Test Suite", () => {
     });
 
     testDataBooking.forEach((booking, index) => {
-        test(`Validar el crear con el Token del Excel - Caso ${index + 1}`, async () => {
+        test(`Validar el create con el Token del Excel - Caso ${index + 1}`, async () => {
             let dataBooking: IBooking = {} as IBooking;
             let isValidBooking: boolean = false;
             let isValidatoJson: boolean = false;

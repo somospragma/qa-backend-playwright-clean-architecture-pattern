@@ -117,11 +117,9 @@ A continuación, se detalla la estructura del proyecto con una breve descripció
 ### Ejecución de Pruebas
 - **Ejecutar todas las pruebas con Playwright**:
    ```bash
-   npx playwright test
    npm run test
 - **Ejecutar pruebas específicas**:
    ```bash
-   npx playwright test tests/service1 --headed
    npm run test:service1
 ### Reportes
 - **Ejecutar el reporte de Playwright**:

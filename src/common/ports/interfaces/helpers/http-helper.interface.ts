@@ -35,7 +35,7 @@ export interface IHttpHelper {
      * @param data T
      * @returns Promise APIResponse
      */
-    httpDelete<T>(baseUrl: string, path: string, data: T): Promise<APIResponse>;
+    httpDelete<T>(baseUrl: string, path: string, headers?: { [key: string]: string; } | undefined): Promise<APIResponse>;
 
     /**
      * Method by which the put request is made

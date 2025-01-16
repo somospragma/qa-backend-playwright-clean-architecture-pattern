@@ -12,17 +12,11 @@ export class BookingDeleteService implements IBookingDeleteService {
     private response: APIResponse = {} as APIResponse;
     private validatoJson: IResponseValidatorHelper;
     private jsonSchemaHelper: IValidatorJsonSchemaHelper = new ValidatorJsonSchemaHelper();
-    private tokenExtractorHelper: ITokenExtractorHelper = new TokenExtractorHelper();
-    private tokenResponse: string | null = null;
 
     public get responsePlaywright(): APIResponse {
         return this.response;
     }
 
-    public get token(): string | null {
-        return this.tokenResponse;
-    }
-    
     constructor(request: APIRequestContext) {
         this.httpHelper = new HttpHelper(request);
         this.validatoJson = new ResponseValidatorHelper(this.jsonSchemaHelper.jsonSchemaResponseRead200() as IJSONSchema);
@@ -38,11 +32,12 @@ export class BookingDeleteService implements IBookingDeleteService {
             Cookie: `token=${token}`
         };
 
-        this.loggerHelper.logRequest("GET", `${url}${path}`, headers);
+        console.log(`${url}${path}`);
+        
+        this.loggerHelper.logRequest("DELETE", `${url}${path}`, headers);
         if (url) {
             try {
                 this.response = await this.httpHelper.httpDelete(url, path, headers);
-                this.tokenResponse = this.tokenExtractorHelper.extractToken(this.response);
             } catch (error) {
                 if (this.errorHelper.isHttpError(error)) {
                     this.loggerHelper.logResponse(

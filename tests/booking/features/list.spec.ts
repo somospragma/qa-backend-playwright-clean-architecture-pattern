@@ -26,7 +26,7 @@ test.describe("List API Test Suite", () => {
     });
 
     testData.forEach((data, index) => {
-        test(`Validar la lista con el Token del Excel - Caso ${index + 1}`, async () => {
+        test(`Validar la list con el Token del Excel - Caso ${index + 1}`, async () => {
             await test.step("Consumir el servicio con token", async () => {
                 await bookingListService.consumeService(data.token, "");
             });

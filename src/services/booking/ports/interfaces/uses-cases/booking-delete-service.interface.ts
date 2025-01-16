@@ -2,7 +2,6 @@ import { APIResponse } from "@playwright/test";
 
 export interface IBookingDeleteService {
     get responsePlaywright(): APIResponse;
-    get token(): string | null;
     
     consumeService(token: string, roomid: string): Promise<void>;
 

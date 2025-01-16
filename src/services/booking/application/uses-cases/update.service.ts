@@ -2,23 +2,25 @@ import { APIRequestContext, APIResponse } from "@playwright/test";
 
 import { IErrorHelper, IHttpHelper, IJSONSchema, ILoggerHelper, IResponseValidatorHelper } from "@common/ports";
 import { ErrorHelper, HttpHelper, LoggerHelper, ResponseValidatorHelper } from "@common/domain/helpers";
-import { IBooking, IBookingCreate, IBookingUpdateService, IValidatorJsonSchemaHelper } from "@booking/ports";
+import { IBooking, IBookingResponse, IBookingUpdateService, IValidateBookingEntity, IValidatorJsonSchemaHelper } from "@booking/ports";
 import { ValidatorJsonSchemaHelper } from "@booking/domain/helpers";
+import { ValidateBookingEntity } from "@booking/domain/entities";
 
 export class BookingUpdateService implements IBookingUpdateService {
     private httpHelper: IHttpHelper;
     private loggerHelper: ILoggerHelper = new LoggerHelper();
     private errorHelper: IErrorHelper = new ErrorHelper();
     private response: APIResponse = {} as APIResponse;
-    private bookingResponse: IBookingCreate = {} as IBookingCreate;
+    private bookingResponse: IBookingResponse = {} as IBookingResponse;
     private validatoJson: IResponseValidatorHelper;
     private jsonSchemaHelper: IValidatorJsonSchemaHelper = new ValidatorJsonSchemaHelper();
+    private validateBooking: IValidateBookingEntity = new ValidateBookingEntity();
 
     public get responsePlaywright(): APIResponse {
         return this.response;
     }
 
-    public get booking(): IBookingCreate {
+    public get booking(): IBookingResponse {
         return this.bookingResponse;
     }
 
@@ -30,18 +32,18 @@ export class BookingUpdateService implements IBookingUpdateService {
     async consumeService(token: string, booking: IBooking): Promise<void> {
 
         const url = process.env.URL;
-        const path = (process.env.Booking) ? `${process.env.Booking}${(booking.roomid) ? booking.roomid : ''}` : '';
+        const path = (process.env.Booking) ? `${process.env.Booking}${(booking.bookingid) ? booking.bookingid : ''}` : '';
         const headers = {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
             Cookie: `token=${token}`
         };
 
-        this.loggerHelper.logRequest("GET", `${url}${path}`, headers);
+        this.loggerHelper.logRequest("PUT", `${url}${path}`, headers, booking);
         if (url) {
             try {
                 this.response = await this.httpHelper.httpPut(url, path, booking, headers);
-                this.bookingResponse = (this.response.status() === 200) ? await this.response.json() : {};
+                this.bookingResponse = await this.response.json();
             } catch (error) {
                 if (this.errorHelper.isHttpError(error)) {
                     this.loggerHelper.logResponse(
@@ -57,6 +59,10 @@ export class BookingUpdateService implements IBookingUpdateService {
 
     validatorJsonSchema(bodyResponse: { [key: string]: string; }): boolean {
         return this.validatoJson.validateResponse(bodyResponse);
+    }
+
+    validateBookingData(booking: IBooking): boolean {
+        return this.validateBooking.validateBookingData(booking, this.bookingResponse.booking);
     }
 
     reportEnd<T>(status: number, dataresponse: T, isResult: boolean): void {

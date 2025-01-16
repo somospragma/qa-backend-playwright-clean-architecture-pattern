@@ -8,6 +8,9 @@ export type { IBookingUpdateService } from './interfaces/uses-cases/booking-upda
 // Helper
 export type { IValidatorJsonSchemaHelper } from './interfaces/helpers/validator-json-schema-helper.interface';
 
+// Entities
+export type { IValidateBookingEntity } from './interfaces/entities/validate-booking-entity.interface';
+
 // Interfaces
 export type { IBooking } from './interfaces/booking.interface';
 export type { IBookingDates } from './interfaces/booking-dates.interface';

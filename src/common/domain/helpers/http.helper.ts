@@ -26,9 +26,9 @@ export class HttpHelper implements IHttpHelper {
         });
     };
 
-    async httpDelete<T>(baseUrl: string, path: string, data: T): Promise<APIResponse> {
+    async httpDelete<T>(baseUrl: string, path: string, headers?: { [key: string]: string; } | undefined): Promise<APIResponse> {
         return await this.request.delete(`${baseUrl}${path}`, {
-            data
+            headers,
         });
     };
 

@@ -2,46 +2,14 @@
   {
     "bookingid": 1,
     "roomid": 1,
-    "firstname": "James",
-    "lastname": "Dean",
-    "depositpaid": true,
-    "bookingdates": "{\"checkin\":\"2022-02-01\",\"checkout\":\"2022-02-05\"}"
-  },
-  {
-    "bookingid": 2,
-    "roomid": 4,
     "firstname": "Cristhian",
-    "lastname": "Montaño",
-    "depositpaid": true,
-    "bookingdates": "{\"checkin\":\"2025-01-19\",\"checkout\":\"2025-01-20\"}"
-  },
-  {
-    "bookingid": 3,
-    "roomid": 5,
-    "firstname": "David",
     "lastname": "Vargas",
-    "depositpaid": true,
-    "bookingdates": "{\"checkin\":\"2025-01-19\",\"checkout\":\"2025-01-20\"}"
-  },
-  {
-    "bookingid": 4,
-    "roomid": 4,
-    "firstname": "Cristhian",
-    "lastname": "Montaño",
-    "depositpaid": true,
-    "bookingdates": "{\"checkin\":\"2025-01-19\",\"checkout\":\"2025-01-20\"}"
-  },
-  {
-    "bookingid": 5,
-    "roomid": 5,
-    "firstname": "David",
-    "lastname": "Vargas",
-    "depositpaid": true,
+    "depositpaid": false,
     "bookingdates": "{\"checkin\":\"2025-01-19\",\"checkout\":\"2025-01-20\"}"
   },
   {
     "bookingid": 6,
-    "roomid": 6,
+    "roomid": 10,
     "firstname": "Cristhian",
     "lastname": "Montaño",
     "depositpaid": true,
@@ -49,34 +17,10 @@
   },
   {
     "bookingid": 7,
-    "roomid": 7,
+    "roomid": 11,
     "firstname": "David",
     "lastname": "Vargas",
-    "depositpaid": true,
-    "bookingdates": "{\"checkin\":\"2025-01-19\",\"checkout\":\"2025-01-20\"}"
-  },
-  {
-    "bookingid": 8,
-    "roomid": 1,
-    "firstname": "string",
-    "lastname": "string",
-    "depositpaid": true,
-    "bookingdates": "{\"checkin\":\"2025-01-17\",\"checkout\":\"2025-01-18\"}"
-  },
-  {
-    "bookingid": 9,
-    "roomid": 8,
-    "firstname": "Cristhian",
-    "lastname": "Montaño",
-    "depositpaid": true,
-    "bookingdates": "{\"checkin\":\"2025-01-19\",\"checkout\":\"2025-01-20\"}"
-  },
-  {
-    "bookingid": 10,
-    "roomid": 9,
-    "firstname": "David",
-    "lastname": "Vargas",
-    "depositpaid": true,
+    "depositpaid": false,
     "bookingdates": "{\"checkin\":\"2025-01-19\",\"checkout\":\"2025-01-20\"}"
   }
 ]

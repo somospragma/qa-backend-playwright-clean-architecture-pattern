@@ -29,7 +29,7 @@ test.describe("List API Test Suite", () => {
     });
 
     testListBooking.forEach((booking, index) => { 
-        test(`Validar al lear con el Token del Excel - Caso ${index + 1}`, async () => {
+        test(`Validar al read con el Token del Excel - Caso ${index + 1}`, async () => {
             let isValidatoJson: boolean = false;
             await test.step("Consumir el servicio con token", async () => {
                 await bookingReadService.consumeService(testDataToken[0].token, `${booking.bookingid}`);
@@ -49,8 +49,11 @@ test.describe("List API Test Suite", () => {
             });
             
             await test.step("Validar la respuesta del servicio", async () => {
-                expect(isValidatoJson).toBe(true);
+                const isValidBookingid = bookingReadService.booking === booking.bookingid;
+
                 expect(response.status()).toBe(200);
+                expect(isValidatoJson).toBe(true);
+                expect(isValidBookingid).toBe(true);
             });
         });
     })
