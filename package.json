@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
-    "test:auth:login": "npx playwright test tests/auth/features/login --headed",
-    "test:booking:list": "npx playwright test tests/booking/features/list --headed",
-    "test:booking:create": "npx playwright test tests/booking/features/create --headed",
-    "test:booking:read": "npx playwright test tests/booking/features/read --headed",
-    "test:booking:update": "npx playwright test tests/booking/features/update --headed",
-    "test:booking:delete": "npx playwright test tests/booking/features/delete --headed",
+    "test:posts:update": "npx playwright test tests/posts/features/test1-update --headed",
+    "test:posts:create": "npx playwright test tests/posts/features/test1-create --headed",
+    "test:posts:read": "npx playwright test tests/posts/features/test1-read --headed",
+    "test:posts:list": "npx playwright test tests/posts/features/test1-list --headed",
+    "test:posts:delete": "npx playwright test tests/posts/features/test1-delete --headed",
     "report": "npx playwright show-report"
   },
   "keywords": [],
